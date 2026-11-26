@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <LangVersion>latest</LangVersion>
+    <AssemblyName>QuickLook.Plugin.ThorVGViewer</AssemblyName>
+    <RootNamespace>QuickLook.Plugin.ThorVGViewer</RootNamespace>
+    <Version>0.1.0</Version>
+    <Copyright>2026 K. S. Ernest (iFire) Lee</Copyright>
+    <QuickLookDir Condition="'$(QuickLookDir)' == ''">$(LOCALAPPDATA)\Programs\QuickLook</QuickLookDir>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
+    <Reference Include="QuickLook.Common">
+      <HintPath>$(QuickLookDir)\QuickLook.Common.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="QuickLook.Plugin.Metadata.config" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>
