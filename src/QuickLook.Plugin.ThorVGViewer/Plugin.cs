@@ -11,6 +11,7 @@ namespace QuickLook.Plugin.ThorVGViewer
     public class Plugin : IViewer
     {
         private LottiePlayer _player;
+        private DotLottie _archive;
         public int Priority => 10;
 
         public void Init()
@@ -23,6 +24,8 @@ namespace QuickLook.Plugin.ThorVGViewer
         {
             if (Directory.Exists(path)) return false;
             if (path.EndsWith(".lottie.json", StringComparison.OrdinalIgnoreCase)) return true;
+            if (path.EndsWith(".lot", StringComparison.OrdinalIgnoreCase)) return true;
+            if (path.EndsWith(".lottie", StringComparison.OrdinalIgnoreCase)) return true;
             return path.EndsWith(".json", StringComparison.OrdinalIgnoreCase) && LooksLikeLottie(path);
         }
 
@@ -42,7 +45,15 @@ namespace QuickLook.Plugin.ThorVGViewer
 
         public void Prepare(string path, ContextObject context)
         {
-            _player = new LottiePlayer(path, 2048);
+            if (path.EndsWith(".lottie", StringComparison.OrdinalIgnoreCase))
+            {
+                _archive = new DotLottie(path);
+                _player = new LottiePlayer(_archive.Animation, _archive.Folder, 2048);
+            }
+            else
+            {
+                _player = new LottiePlayer(File.ReadAllBytes(path), Path.GetDirectoryName(Path.GetFullPath(path)), 2048);
+            }
             context.SetPreferredSizeFit(_player.NativeSize, 0.8);
         }
 
@@ -57,6 +68,8 @@ namespace QuickLook.Plugin.ThorVGViewer
         {
             _player?.Dispose();
             _player = null;
+            _archive?.Dispose();
+            _archive = null;
         }
     }
 }

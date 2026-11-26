@@ -6,9 +6,9 @@ A viewer plugin for QuickLook for Windows (`QL-Win/QuickLook`). It previews Lott
 
 ## Which files it opens
 
-- `*.lottie.json`: always.
+- `*.lot` and `*.lottie.json`: Lottie JSON, always (ThorVG's own loader treats `lot` as Lottie).
+- `*.lottie`: dotLottie, a zip. ThorVG 1.1.4 has no loader for the archive, so the plugin unpacks it into a temporary folder, takes the first animation named in `manifest.json` from `animations/<id>.json` (dotLottie 1) or `a/<id>.json` (dotLottie 2), or else the first JSON file, and loads it with that folder as the resource path, so its images resolve. The folder is deleted when the preview closes.
 - `*.json`: only when the first 8 KB hold the four keys a Bodymovin document starts with (`"v"`, `"fr"`, `"op"`, `"layers"`), so other JSON files keep QuickLook's text viewer.
-- dotLottie (`*.lottie`, a zip) is not opened: ThorVG 1.1.4 has no loader for it.
 
 ## How a preview is drawn
 
@@ -28,4 +28,4 @@ The plugin targets .NET Framework 4.8, as QuickLook's plugins do, and builds wit
 
 ## Checked
 
-On 2026-11-26 with QuickLook 4.5.0: a 256 x 256, 60-frame Lottie previewed with no exception logged, and two captures of the preview window 0.4 s apart showed the animation at different frames.
+On 2026-11-26 with QuickLook 4.5.0: a 256 x 256, 60-frame Lottie previewed with no exception logged, and two captures of the preview window 0.4 s apart showed the animation at different frames. The same animation as `.lot`, and as a dotLottie 1 archive whose animation draws an image from the archive's `images/` folder, previewed with the image in place.

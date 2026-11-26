@@ -18,12 +18,11 @@ namespace QuickLook.Plugin.ThorVGViewer
         private float _frames, _frame;
         public Size NativeSize { get; private set; }
 
-        public LottiePlayer(string path, int maxSide)
+        public LottiePlayer(byte[] data, string resourceDir, int maxSide)
         {
-            var data = File.ReadAllBytes(path);
             _animation = ThorVG.tvg_animation_new();
             var picture = ThorVG.tvg_animation_get_picture(_animation);
-            var dir = Path.GetDirectoryName(Path.GetFullPath(path)) + Path.DirectorySeparatorChar;
+            var dir = resourceDir.TrimEnd(Path.DirectorySeparatorChar) + Path.DirectorySeparatorChar;
             if (ThorVG.tvg_picture_load_data(picture, data, (uint)data.Length, "lottie+json", dir, true) != 0)
                 throw new InvalidDataException("ThorVG could not read this file as a Lottie animation.");
             ThorVG.tvg_picture_get_size(picture, out var w, out var h);

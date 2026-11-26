@@ -1,6 +1,6 @@
 # interactor-quicklook-thorvg
 
-Preview Lottie animations in [QuickLook for Windows](https://github.com/QL-Win/QuickLook), rendered by [ThorVG](https://github.com/thorvg/thorvg). Select a `.lottie.json` file, or a `.json` file that holds a Lottie animation, and press Space.
+Preview Lottie animations in [QuickLook for Windows](https://github.com/QL-Win/QuickLook), rendered by [ThorVG](https://github.com/thorvg/thorvg). Select a `.lot`, `.lottie` (dotLottie), `.lottie.json` file, or a `.json` file that holds a Lottie animation, and press Space.
 
 ## Install
 
