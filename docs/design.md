@@ -6,7 +6,7 @@ A viewer plugin for QuickLook for Windows (`QL-Win/QuickLook`). It previews Lott
 
 ## Which files it opens
 
-- `*.lot` and `*.lottie.json`: Lottie JSON, always (ThorVG's own loader treats `lot` as Lottie).
+- `*.lot` and `*.lottie.json`: Lottie JSON, always. `.lot` is the extension IANA registered for the Lottie Animation Community's format (media type `video/lottie+json`, Lottie specification 1.0, https://lottie.github.io/lottie-spec/1.0/); the plugin hands ThorVG the same type name, `lottie+json`.
 - `*.lottie`: dotLottie, a zip. ThorVG 1.1.4 has no loader for the archive, so the plugin unpacks it into a temporary folder, takes the first animation named in `manifest.json` from `animations/<id>.json` (dotLottie 1) or `a/<id>.json` (dotLottie 2), or else the first JSON file, and loads it with that folder as the resource path, so its images resolve. The folder is deleted when the preview closes.
 - `*.json`: only when the first 8 KB hold the four keys a Bodymovin document starts with (`"v"`, `"fr"`, `"op"`, `"layers"`), so other JSON files keep QuickLook's text viewer.
 
