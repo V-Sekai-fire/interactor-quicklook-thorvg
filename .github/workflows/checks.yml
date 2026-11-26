@@ -1,0 +1,26 @@
+# SPDX-FileCopyrightText: 2026 K. S. Ernest (iFire) Lee
+# SPDX-License-Identifier: MIT
+# One job, prek: every gate is a hook in .pre-commit-config.yaml (RFD66606-2258). The merge queue
+# requires no job by name.
+name: Checks
+on:
+  pull_request:
+  merge_group:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  # One run per branch. A newer pull_request run cancels the older one still running; a merge_group
+  # entry or a push is never cancelled.
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+jobs:
+  prek:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: j178/prek-action@v3.1.1

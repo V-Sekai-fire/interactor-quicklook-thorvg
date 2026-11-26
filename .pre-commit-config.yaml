@@ -1,0 +1,17 @@
+# SPDX-FileCopyrightText: 2026 K. S. Ernest (iFire) Lee
+# SPDX-License-Identifier: MIT
+# Every gate is a hook (RFD66606-2258): the one CI job runs prek, and a desk runs the same hooks.
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-yaml
+      - id: check-merge-conflict
+      - id: check-added-large-files
+        args: [--maxkb=2048]
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+  - repo: https://github.com/fsfe/reuse-tool
+    rev: v6.2.0
+    hooks:
+      - id: reuse

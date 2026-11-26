@@ -16,4 +16,4 @@ How it works, which files it opens and why OpenMP is off: [docs/design.md](docs/
 
 ## Licence
 
-MIT, as is ThorVG (`LICENSES/ThorVG-MIT.txt`).
+MIT, as is ThorVG (`docs/ThorVG-LICENSE.txt`).

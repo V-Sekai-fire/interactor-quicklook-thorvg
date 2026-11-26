@@ -5,3 +5,9 @@ path = "**"
 precedence = "aggregate"
 SPDX-FileCopyrightText = "2026 K. S. Ernest (iFire) Lee"
 SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = "docs/ThorVG-LICENSE.txt"
+precedence = "override"
+SPDX-FileCopyrightText = "2020 - 2026 ThorVG Project"
+SPDX-License-Identifier = "MIT"
